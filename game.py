@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
-import socket, sys, chardet
+import socket, sys
+
+#define msg
+MSG_GAME_OVER='game-over \n'
+#define msg end
+
 
 if len(sys.argv) != 6:
     print 'Parameter not mate, notice must use like this:'
@@ -29,12 +34,14 @@ client_socket.connect(server_addr)
 #register on server...
 client_socket.send('reg: '+pid+' Neo \n')
 
-buf_len=25
+buf_len=4096
 # buf = ''
 # has_in = False
 while 1:
     data = client_socket.recv(buf_len)
     print 'data: ['+data+']'
+    if data== MSG_GAME_OVER:
+        break
     # if len(data) == buf_len: #It mey casue a bug, if the msg len is exactly buf_len, it will wait for the next msg to recv..Ugly!
     #     if has_in==False:
     #         buf =''
