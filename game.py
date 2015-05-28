@@ -24,31 +24,32 @@ client_socket.bind(client_addr)
 #connect server_addr
 client_socket.connect(server_addr)
 
-client_socket.settimeout(2000)
+# client_socket.settimeout(2000)
 
 #register on server...
 client_socket.send('reg: '+pid+' Neo \n')
 
 buf_len=25
-buf = ''
-has_in = False
+# buf = ''
+# has_in = False
 while 1:
     data = client_socket.recv(buf_len)
-    if len(data) == buf_len:
-        if has_in==False:
-            buf =''
-            has_in=True
-        buf += data
-    else:
-        if has_in==True:
-            buf += data
-            has_in = False
-        else:
-            buf = data
-
     print 'data: ['+data+']'
-    if has_in==False:
-        print 'buf: ['+buf+']'
+    # if len(data) == buf_len: #It mey casue a bug, if the msg len is exactly buf_len, it will wait for the next msg to recv..Ugly!
+    #     if has_in==False:
+    #         buf =''
+    #         has_in=True
+    #     buf += data
+    # else:
+    #     if has_in==True:
+    #         buf += data
+    #         has_in = False
+    #     else:
+    #         buf = data
+    #
+    # print 'data: ['+data+']'
+    # if has_in==False:
+    #     print 'buf: ['+buf+']'
 
 client_socket.close()
 sys.exit(0)
