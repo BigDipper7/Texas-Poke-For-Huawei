@@ -1,5 +1,41 @@
 # -*- coding: utf-8 -*-
 import socket, sys
+import re
+
+#----------LOGIC PART-----------------
+user_pid = []
+user_jetton = []
+user_money = []
+user_order = [0,0,0,0,0,0,0,0,0,0]
+match_number = 1
+blind_number = 0
+total_number = 0
+
+def processAllMsg(msg):
+    #identify msg ...
+    re.findall(r"(\w+?/\ \n.+?\n/\w+?\ \n)",str,re.S)#解决粘包问题
+    msg_arr = msg=.split('\n')
+    if msg_arr[0] == 'seat/ ':
+
+    elif msg_arr[0] == 'blind/ ':
+
+    elif msg_arr[0] == 'hold/ ':
+
+    elif msg_arr[0] == 'hold/ ':
+
+    elif msg_arr[0] == 'inquire/ ':
+
+    elif msg_arr[0] == 'flop/ ':
+
+    elif msg_arr[0] == 'turn/ ':
+
+    elif msg_arr[0] == 'river/ ':
+
+
+
+
+#----------LOGIC PART-----------------
+
 
 #define msg
 MSG_GAME_OVER='game-over \n'
@@ -42,6 +78,9 @@ while 1:
     print 'data: ['+data+']'
     if data== MSG_GAME_OVER:
         break
+    else:
+        processAllMsg(data)
+
     # if len(data) == buf_len: #It mey casue a bug, if the msg len is exactly buf_len, it will wait for the next msg to recv..Ugly!
     #     if has_in==False:
     #         buf =''

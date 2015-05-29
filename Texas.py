@@ -19,7 +19,8 @@ while match_number <=500:
     hold_card_point = []
     flop_card_color = []
     flop_card_point = []
-    
+
+    #seat_info_msg
     seat_info_msg = 'seat/ \nbutton: pid jetton money \nsmall blind: pid jetton money \nbig blind: pid jetton money \npid jetton money \n/seat \n'
     user_info = seat_info_msg.split('\n')
 
@@ -42,7 +43,7 @@ while match_number <=500:
         user_money.append(user_pid_temp[4])
 
         i = 4
-    
+
         while user_info[i] != '/seat ':
             user_pid_temp = user_info[i].split(' ')
             user_pid.append(user_pid_temp[0])
@@ -62,8 +63,9 @@ while match_number <=500:
         user_order[1] = 2
 
     print user_number
-        
 
+
+    #blind_msg
     blind_msg = 'blind/ \npid: bet \n/blind \n'
     blind_info = blind_msg.split('\n')
 
@@ -75,6 +77,7 @@ while match_number <=500:
 
 
 
+    #hold_cards_msg
     hold_cards_msg = 'hold/ \ncolor point \ncolor point \n/hold \n'
     hold_cards_info = hold_cards_msg.split('\n')
 
@@ -107,6 +110,7 @@ while match_number <=500:
     print hold_card_point
 
 
+    #inquire_msg
     inquire_msg = 'inquire/ \npid jetton money bet all_in \ntotal pot: num \n/inquire \n'
     inquire_info = inquire_msg.split('\n')
 
@@ -149,7 +153,7 @@ while match_number <=500:
             else:
                 action_msg = 'fold '
 
-            
+
         elif position ==2:
             if hold_card_point[0] == hold_card_point[1]:
                 action_msg = 'raise ' + blind_number
@@ -173,8 +177,8 @@ while match_number <=500:
                 action_msg = 'call '
             else:
                 action_msg = 'fold '
-            
-        
+
+
     else:
         if hold_card_point[0] == hold_card_point[1] and int(hold_card_point[0])>9:
             action_msg = 'raise ' + blind_number + ' '
@@ -190,15 +194,16 @@ while match_number <=500:
             action_msg = 'call '
         else:
             action_msg = 'fold '
-        
+
 
     action_msg += '\n'
 
-    
 
+
+    #flop_mag
     flop_mag = 'flop/ \ncolor point \ncolor point \ncolor point \n/flop \n'
     flop_info = flop_mag.split('\n')
-    
+
     i = 1
     while i <= 3:
         flop_card_color.append(flop_info[i].split(' ')[0])
@@ -216,6 +221,7 @@ while match_number <=500:
         i += 1
 
 
+    #turn_msg
     turn_msg = 'turn/ \ncolor point \n/turn \n'
     turn_info = turn_msg.split('\n')
 
@@ -231,6 +237,7 @@ while match_number <=500:
     else:
         flop_card_point.append(turn_info[1].split(' ')[1])
 
+    #river_msg
     river_msg = 'river/ \ncolor point \n/river \n'
     river_info = river_msg.split('\n')
 
@@ -248,7 +255,3 @@ while match_number <=500:
 
     print flop_card_color
     print flop_card_point
-
-    
-
-    
