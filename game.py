@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import socket, sys
 import re
+import random
 
 
 #define msg
@@ -11,6 +12,7 @@ MSG_CALL='call \n'
 MSG_RAISE='raise 1 \n'
 MSG_ALL_IN='all_in \n'
 MSG_FOLD='fold \n'
+MSG_CAN_SEND=[MSG_CHECK,MSG_CALL,MSG_RAISE,MSG_ALL_IN,MSG_FOLD]
 #define msg end
 
 #----------LOGIC PART-----------------
@@ -287,8 +289,9 @@ def processAllMsg(msg,client_socket):
             # client_socket.send('hold/ ')
             n=0
         elif msg_arr[0] == 'inquire/ ':
-            client_socket.send('fold \n')
-
+            # client_socket.send('fold \n')
+            ranInt = random.randint(0,len(MSG_CAN_SEND)-1)
+            client_socket.send(MSG_CAN_SEND[ranInt])
             n=0
         elif msg_arr[0] == 'flop/ ':
             # client_socket.send('flop/ ')
