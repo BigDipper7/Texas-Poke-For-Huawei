@@ -17,6 +17,9 @@ while True:
         while stdin != 'end':
             stdin = input('Enter Content')
             connection.send(stdin)
-    except socket.timeout:  
+            buf = connection.recv(1024)
+            print '|'+buf+'|'
+
+    except socket.timeout:
         print 'time out'
     connection.close()
